@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=title%></title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: linear-gradient(#0c01af,#0CBABA,#110158 );
+        }
+        .container{
+            width: 420px;
+            padding: 30px 40px;
+            margin: 0 78px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(0,0,0, 0.2);
+            box-shadow: 0 15px 20px rgba(0,0,0, 0.6);
+        }
+        .container h1 {
+            font-size: 30px;
+            font-weight: bold;
+            text-align: left;
+            color: #fff;
+            padding-bottom: 8px;
+            border-bottom: 1px solid silver;
+
+        }
+        .container .input-box {
+            width: 100%;
+            height: 50px;
+            margin: 20px 0;
+        }
+        .input-box input {
+            height: 80%;
+            width: 100%;
+            font-size: medium;
+            padding: 0 15px;
+            border-radius: 30px;
+            border: 2px solid #ccc;
+            outline: none;
+        }
+        .container .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14.5px;
+            color: #fff;
+            margin: -12px 0 15px ;
+        }
+        .remember-forgot label input {
+            accent-color: #fff;
+            text-decoration: none;
+        }
+        .remember-forgot a{
+            text-decoration: underline;
+            color: #fff;
+        }
+        .container .btn {
+            width: 40%;
+            margin-top: 10px;
+            margin-left: 30%;
+            padding: 10px;
+            display: block;
+            font-size: 20px;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            background-image: linear-gradient(to right, #aa076b, #61045f);
+            cursor: pointer;
+            transition: 0.3;
+            
+        }
+        .btn:hover{
+            background-image: linear-gradient(to right,#61045f, #aa076b);
+        }
+        .container .reg-link {
+            font-size: 14.5px;
+            text-align: center;
+            margin: 20px 0 15px ;
+        }
+        .reg-link p a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .reg-link p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    
+</head>
+<body>
+    
+    <div class="container">
+        <form action="">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input type="text" placeholder="username" required>
+            </div>
+
+            <div class="input-box">
+                <input type="password" placeholder="password" required>
+            </div>
+
+            <div class="remember-forgot">
+                <label for=""><input type="checkbox" placeholder="" required> Remember me  
+                </label>
+                <a href="#"> Forgot password</a>
+            </div>
+
+            <button type="submit" class="btn" >Login</button>
+
+            <div class="reg-link">
+                <p>Don't have an account? <a href="./reg.html">Register</a></p>
+            </div>
+        </form>
+    </div>
+    
+
+</body>
+</html>
