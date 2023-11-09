@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 var forgotRouter = require("./routes/forgotPassword")
 var loginRouter = require("./routes/login")
 var registrationRouter = require("./routes/registration")
+var otpVerification = require("./routes/otpVerification")
 
 // custom modules
 const databaseHandler = require("./lib/databaseHandler")// for database
@@ -42,6 +43,7 @@ app.post("/forgotPassword",function(req,res,next){
 app.use("/registration",registrationRouter)
 app.use("/login",loginRouter)
 app.use("/forgotPassword",forgotRouter)
+app.use("/otpVerification",otpVerification)
 app.use('/',indexRouter);
 app.use('/users', usersRouter);
 

@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var dotenv = require("dotenv")
 
 // custom modules
 const databaseHandler = require("../lib/databaseHandler")// for database

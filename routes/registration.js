@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var dotenv = require("dotenv")
+require("dotenv").config()
 
 // custom modules
-const databaseHandler = require("../lib/databaseHandler")// for database
+const mailer = require("../lib/nodemailer")
 
 
 router.get("/",function(req,res,next){
@@ -20,14 +20,17 @@ router.post("/",function(req,res,next){
         process.env.CURRENT_USER_Email = req.body.email
         process.env.CURRENT_USER_Name =  req.body.username
         process.env.CURRENT_USER_Password = req.body.password
+        process.env.CURRENT_USER_FullName = req.body.name
+        process.env.CURRENT_USER_Phone = req.body.phone
+
         console.log("process email "+process.env.CURRENT_USER_Email)
         // send email
         console.log("The process user is: "+process.env.CURRENT_USER)
-        console.log(req.body.Email)
-        process.env.USER_EMAIL_ADRESS = req.body.Email
+        console.log(req.body.email)
+        process.env.USER_EMAIL_ADRESS = req.body.email
         process.env.VERIFICATION_PIN = mailer.randomizerInt()
         mailer.sendMail()
-        res.render("OTPVerification")    
+        res.render("otpVerification",{ title: 'VolunteerMe' })    
     }
 })
   
