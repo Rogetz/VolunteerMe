@@ -8,11 +8,14 @@ router.post("/",function(req,res,next){
     databaseHandler.updatePassword(req.body.Email,req.body.Password,function(err,message){
       if(err){
         console.log(err)
-        res.render("Login")
+        req.flash("loginResult","error changing password")
+        res.redirect("/login")
       }
       else{
         console.log("succesful password change")
-        res.render("Login")
+        req.flash("loginResult","succesful password change")
+        res.redirect("/login")
+        //res.render("Login")
       }
     })
 })  

@@ -16,20 +16,31 @@ router.post("/",function(req,res,next){
       authenticator.signUp(function(err,user){
         if(err){
           console.log("invalid signup credentials")
-          res.render("registration",{ title: 'VolunteerMe' })
+          req.flash("loginResult","invalid signup credentials")
+          res.redirect('/registration')
+          //res.render("registration",{ title: 'VolunteerMe' })
         }
         else if(user != null){
           console.log("successful signup")
+          req.flash("loginResult","successful signup")
+          res.redirect('/index')
           // temporarily cause I'll be using passport in the final implementation
-          res.render("index",{ title: 'VolunteerMe' })
+          //res.render("index",{ title: 'VolunteerMe' })
         }
       })
     }
     else{
+      console.log('wrong otp pin')
       // tell the user to key in the right OTP
-      res.render("otpVerification",{ title: 'VolunteerMe' })
+      req.flash("loginResult","wrong otp pin")
+      res.redirect("/otpVerification")
     }
   })
+
+router.get("/",function(req,res,next){
+  // render method calls the next method automaticlly so you dont need to call it after calling the render method.
+  res.render("otpVerification",{ title: 'VolunteerMe' })
+})
   
 
 module.exports = router;

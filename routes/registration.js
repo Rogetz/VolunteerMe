@@ -13,7 +13,8 @@ router.get("/",function(req,res,next){
 router.post("/",function(req,res,next){
     if(req.body.password != req.body.confirmpassword){
         // find a way of telling the view that the two passwords do not match.
-        res.render("registration",{ title: 'VolunteerMe' })
+        req.flash("loginResult","passwords do not match")
+        res.redirect("/registration")
     }
     // Environment variables can never be arrays.
     else{
@@ -25,12 +26,13 @@ router.post("/",function(req,res,next){
 
         console.log("process email "+process.env.CURRENT_USER_Email)
         // send email
-        console.log("The process user is: "+process.env.CURRENT_USER)
+        console.log("The process user name is: "+process.env.CURRENT_USER_Name)
         console.log(req.body.email)
         process.env.USER_EMAIL_ADRESS = req.body.email
         process.env.VERIFICATION_PIN = mailer.randomizerInt()
         mailer.sendMail()
-        res.render("otpVerification",{ title: 'VolunteerMe' })    
+        req.flash("loginResult","few steps remaining")
+        res.redirect("/otpVerification")    
     }
 })
   

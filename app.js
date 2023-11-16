@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const dotnev = require("dotenv").config()
+const flash = require("connect-flash")
+const session = require("express-session")
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -17,7 +19,19 @@ const databaseHandler = require("./lib/databaseHandler")// for database
 
 var app = express();
 
+app.use(session({
+  secret: "Techstars",
+  saveUninitialized: true,
+  resave: true
+}))
+app.use(flash())
+
 // view engine setup
+app.use(function(req,res,next){
+  // setting the flash to the localhost
+  res.locals.message = req.flash()
+  next()
+})
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -26,19 +40,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.post("/forgotPassword",function(req,res,next){
-  databaseHandler.updatePassword(req.body.Email,req.body.Password,function(err,message){
-    if(err){
-      console.log(err)
-      res.render("Login")
-    }
-    else{
-      console.log("succesful password change")
-      res.render("Login")
-    }
-  })
-})
 
 app.use("/registration",registrationRouter)
 app.use("/login",loginRouter)

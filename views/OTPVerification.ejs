@@ -28,5 +28,10 @@
             <button type="submit">Submit</button>
         </form>
     </div>
+    <div>
+        <%if(locals.message){%>
+          <%=locals.message.loginResult%>
+        <%}%>
+    </div>  
 </body>
 </html>
